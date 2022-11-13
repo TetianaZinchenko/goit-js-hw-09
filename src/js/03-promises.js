@@ -7,12 +7,15 @@ const refs = {
 
 refs.btnSubmit.addEventListener('click', onFormSubmit);
 
+// refs.btnSubmit.disabled = false;
+
 function onFormSubmit(evt) {
   evt.preventDefault();
 
-  const amount = refs.formEl.amount.value;
+  let amount = Number(refs.formEl.amount.value);
   let delayInp = Number(refs.formEl.delay.value);
-  const step = Number(refs.formEl.step.value);
+  let step = Number(refs.formEl.step.value);
+  refs.btnSubmit.disabled = true;
 
   for (let i = 1; i <= amount; i += 1) {
     createPromise(i, delayInp)
@@ -25,6 +28,14 @@ function onFormSubmit(evt) {
 
     delayInp += step;
   }
+
+  setTimeout(() => {
+    refs.btnSubmit.disabled = false;
+  }, delayInp);
+
+  refs.formEl.amount.value = '';
+  refs.formEl.delay.value = '';
+  refs.formEl.step.value = '';
 }
 
 function createPromise(position, delay) {
