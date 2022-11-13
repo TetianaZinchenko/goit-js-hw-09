@@ -7,8 +7,6 @@ const refs = {
 
 refs.btnSubmit.addEventListener('click', onFormSubmit);
 
-// refs.btnSubmit.disabled = false;
-
 function onFormSubmit(evt) {
   evt.preventDefault();
 
